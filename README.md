@@ -17,8 +17,8 @@ Os requisitos para este desafio são:
 
 Forma de testar
 
-Na pasta Multithreading/cmd/server
-Rodar o comando go run main.go
+Na pasta Multithreading/cmd/server, rodar o comando go run main.go
+
 E no arquivo Multithreading/test/cep.http realizar o request
 
 

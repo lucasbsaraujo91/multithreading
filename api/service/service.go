@@ -10,7 +10,7 @@ import (
 	"Multithreading/api/entity"
 )
 
-func FetchAddress(cep string) (interface{}, error) {
+func FetchAddress(cep string, fetcher api.AddressFetcher) (interface{}, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
@@ -23,7 +23,7 @@ func FetchAddress(cep string) (interface{}, error) {
 	var resultErr error
 
 	go func() {
-		address, err := api.FetchAddressFromBrasilAPI(cep)
+		address, err := fetcher.FetchAddressFromBrasilAPI(cep)
 		if err != nil {
 			errors <- err
 			return
@@ -32,7 +32,7 @@ func FetchAddress(cep string) (interface{}, error) {
 	}()
 
 	go func() {
-		address, err := api.FetchAddressFromViaCEP(cep)
+		address, err := fetcher.FetchAddressFromViaCEP(cep)
 		if err != nil {
 			errors <- err
 			return

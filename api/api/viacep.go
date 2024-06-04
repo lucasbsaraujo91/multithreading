@@ -12,6 +12,7 @@ import (
 // type DefaultAddressFetcher struct{}
 
 func (f *DefaultAddressFetcher) FetchAddressFromViaCEP(cep string) (entity.ViaCEPAddress, error) {
+	//time.Sleep(2 * time.Second)
 	var address entity.ViaCEPAddress
 	resp, err := http.Get(fmt.Sprintf("http://viacep.com.br/ws/%s/json/", cep))
 	if err != nil {
